@@ -9,3 +9,11 @@
 5. [Lab 4. HTTP Request](https://github.com/Abdurraziq/pendalaman-react/tree/Lab-4)
 6. [Lab 5. User Authentication](https://github.com/Abdurraziq/pendalaman-react/tree/Lab-5)
 7. [Tugas 2](https://github.com/Abdurraziq/pendalaman-react/tree/Tugas-2)
+
+## Tugas 1. Redux
+
+Mengimplementasikan ulang Lab 3 dengan menggunakan Redux.
+
+![screenshoot](docs/img/screencapture1.png)
+
+![screenshoot](docs/img/screencapture2.png)
