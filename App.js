@@ -21,7 +21,7 @@ export default function App() {
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
@@ -40,3 +40,8 @@ export default function App() {
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
+});
