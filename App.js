@@ -9,7 +9,9 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  return action.type ? { teks: action.type } : state;
+  if (action.type === "ADA_TEKS_BARU" && action.teks)
+    return { teks: action.teks };
+  return state;
 };
 
 const store = createStore(reducer);

@@ -23,15 +23,16 @@ class PizzaTranslator extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
+  console.log(state);
   return {
-    teks: state.teks
+    teks: state.teks,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    tampilkanTeks: (teksBaru) => dispatch({ type: teksBaru }),
+    tampilkanTeks: (teksBaru) =>
+      dispatch({ type: "ADA_TEKS_BARU", teks: teksBaru }),
   };
 }
 
