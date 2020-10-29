@@ -1,45 +1,33 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Button, Text } from "react-native";
+import CounterApp from "./src/CounterApp";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+
+const initialState = {
+  angka: 0,
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "TAMBAHKAN":
+      return { angka: state.angka + 1 };
+    case "KURANGI":
+      return { angka: state.angka - 1 };
+  }
+
+  return state;
+};
+
+const store = createStore(reducer);
 
 class App extends Component {
-  state = {
-    angka: 0,
-  };
-
-  tambah = () => {
-    this.setState({ angka: this.state.angka + 1 });
-  };
-
-  kurang = () => {
-    this.setState({ angka: this.state.angka - 1 });
-  };
-
   render() {
     return (
-      <View style={styles.container}>
-        <View style={{ flex: 1, width: 200, justifyContent: "space-around" }}>
-          <Button title="Tambah" onPress={this.tambah} />
-          <Text style={styles.text}>{this.state.angka}</Text>
-          <Button title="Kurangi" onPress={this.kurang} />
-        </View>
-      </View>
+      <Provider store={store}>
+        <CounterApp />
+      </Provider>
     );
   }
 }
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 24,
-    backgroundColor: "#ecf0f1",
-    padding: 8,
-  },
-  text: {
-    fontSize: 40,
-    alignSelf: "center",
-  },
-});
