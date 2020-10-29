@@ -1,21 +1,27 @@
-import React, { useState } from "react";
-import { Text, TextInput, View } from "react-native";
+import React, { Component } from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 
-const PizzaTranslator = () => {
-  const [text, setText] = useState("");
-  return (
-    <View style={{ padding: 24 }}>
-      <TextInput
-        style={{ height: 40 }}
-        placeholder="Silahkan ketik disini untuk diterjemahkan"
-        onChangeText={(text) => setText(text)}
-        defaultValue={text}
-      />
-      <Text style={{ padding: 10, fontSize: 42 }}>
-        {text.split(' ').map((word) => word && '🍕').join(' ')}
-      </Text>
-    </View>
-  );
+import PizzaTranslator from "./src/PizzaTranslator";
+
+const initialState = {
+  teks: "",
 };
 
-export default PizzaTranslator;
+const reducer = (state = initialState, action) => {
+  return action.type ? { teks: action.type } : state;
+};
+
+const store = createStore(reducer);
+
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <PizzaTranslator />
+      </Provider>
+    );
+  }
+}
+
+export default App;
