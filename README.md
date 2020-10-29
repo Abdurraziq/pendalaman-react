@@ -9,3 +9,7 @@
 5. [Lab 4. HTTP Request](https://github.com/Abdurraziq/pendalaman-react/tree/Lab-4)
 6. [Lab 5. User Authentication](https://github.com/Abdurraziq/pendalaman-react/tree/Lab-5)
 7. [Tugas 2](https://github.com/Abdurraziq/pendalaman-react/tree/Tugas-2)
+
+## Lab 4. HTTP Reques
+
+![screenshoot](docs/img/screencapture1.png)
