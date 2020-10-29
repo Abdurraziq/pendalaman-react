@@ -1,21 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import { View, StyleSheet, Button, Text } from "react-native";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+class App extends Component {
+  state = {
+    angka: 0,
+  };
+
+  tambah = () => {
+    this.setState({ angka: this.state.angka + 1 });
+  };
+
+  kurang = () => {
+    this.setState({ angka: this.state.angka - 1 });
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={{ flex: 1, width: 200, justifyContent: "space-around" }}>
+          <Button title="Tambah" onPress={this.tambah} />
+          <Text style={styles.text}>{this.state.angka}</Text>
+          <Button title="Kurangi" onPress={this.kurang} />
+        </View>
+      </View>
+    );
+  }
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 24,
+    backgroundColor: "#ecf0f1",
+    padding: 8,
+  },
+  text: {
+    fontSize: 40,
+    alignSelf: "center",
   },
 });
