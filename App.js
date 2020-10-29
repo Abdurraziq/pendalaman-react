@@ -1,5 +1,6 @@
 import "react-native-gesture-handler";
 import React, { useEffect, useState } from "react";
+import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -56,8 +57,22 @@ const App = () => {
     <NavigationContainer>
       <stack.Navigator>
         {foundData ? (
-          <stack.Screen name="Home">
-            {(props) => <HomeSreen {...props} logout={logoutAction} />}
+          <stack.Screen
+            name="Home"
+            options={{
+              headerRight: () => (
+                <TouchableOpacity
+                  style={{ marginRight: 16 }}
+                  onPress={logoutAction}
+                >
+                  <View style={styles.button}>
+                    <Text style={styles.textButton}>LOGOUT</Text>
+                  </View>
+                </TouchableOpacity>
+              ),
+            }}
+          >
+            {(props) => <HomeSreen {...props} />}
           </stack.Screen>
         ) : isLoad ? (
           <stack.Screen name="Load" options={{ headerShown: false }}>
@@ -72,5 +87,19 @@ const App = () => {
     </NavigationContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    borderRadius: 2,
+    alignItems: "center",
+    backgroundColor: "#ef1111",
+    justifyContent: "center",
+    alignSelf: "center",
+    padding: 6,
+  },
+  textButton: {
+    color: "#fff",
+  },
+});
 
 export default App;
