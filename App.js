@@ -12,25 +12,27 @@ import LoginScreen from "./screens/login";
 const stack = createStackNavigator();
 
 const App = () => {
-  const [foundToken, setFoundToken] = useState("");
+  const [foundData, setFoundData] = useState(false);
   const [isLoad, setIsload] = useState(true);
 
   const checkToken = async () => {
     try {
-      let findingToken = await AsyncStorage.getItem("token");
-      setFoundToken(findingToken);
+      let findingEmail = await AsyncStorage.getItem("email");
+      let findingPassword = await AsyncStorage.getItem("password");
+      setFoundData(findingEmail && findingPassword);
       setIsload(false);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const loginAction = async () => {
-    let dummyToken = "tOkeN123$%^";
+  const loginAction = async (login) => {
+    const [email, password] = [...login];
 
     try {
-      await AsyncStorage.setItem("token", dummyToken);
-      setFoundToken(dummyToken);
+      await AsyncStorage.setItem("email", email);
+      await AsyncStorage.setItem("password", password);
+      setFoundData(true);
     } catch (error) {
       console.error(error);
     }
@@ -38,8 +40,9 @@ const App = () => {
 
   const logoutAction = async () => {
     try {
-      await AsyncStorage.removeItem("token");
-      setFoundToken("");
+      await AsyncStorage.removeItem("email");
+      await AsyncStorage.removeItem("password");
+      setFoundData(false);
     } catch (error) {
       console.error(error);
     }
@@ -52,7 +55,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <stack.Navigator>
-        {foundToken ? (
+        {foundData ? (
           <stack.Screen name="Home">
             {(props) => <HomeSreen {...props} logout={logoutAction} />}
           </stack.Screen>
@@ -70,4 +73,4 @@ const App = () => {
   );
 };
 
-export default App
+export default App;
